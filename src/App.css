@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Catamaran:wght@100..900&family=Montserrat+Subrayada:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply snap-y snap-mandatory scroll-smooth scrollbar-hide bg-black text-white text-2xl;
+    }
+}
+
+* {
+    font-family: "Catamaran", sans-serif;
+}
