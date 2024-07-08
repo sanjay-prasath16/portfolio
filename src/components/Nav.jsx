@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useState } from "react"
 
-const Nav = ({ homeRef, aboutRef, experienceRef, servicesRef, contactRef }) => {
+const Nav = ({ activeSection, homeRef, aboutRef, experienceRef, servicesRef, contactRef }) => {
+
   const scrollToSection = (elementRef) => {
 
     window.scrollTo({
@@ -19,14 +20,11 @@ const Nav = ({ homeRef, aboutRef, experienceRef, servicesRef, contactRef }) => {
     {name: 'Contact', path:'/Contact', ref: contactRef },
   ])
 
-  const { pathname } = useLocation();
-  console.log(pathname);
-
   return (
-    <div className="flex gap-8 py-4 px-14 text-xs">
+    <div className="bg-fixed flex gap-8 py-4 px-14 text-xs">
       {
         links.map((link,index) => (
-          <Link href={link.path} key={index} onClick={() => scrollToSection(link.ref)} className={`${link.path === pathname && "text-yellow-500 h-4 border-b-2 border-yellow-500"} h-1 capitalize font-medium hover:text-yellow-500 transition-all`}>{link.name}</Link>
+          <Link href={link.path} key={index} onClick={() => scrollToSection(link.ref)} className={`${link.name === activeSection && "text-yellow-500 h-4 border-b-2 border-yellow-500"} h-1 capitalize font-medium hover:text-yellow-500 transition-all`}>{link.name}</Link>
         ))
       }
     </div>
@@ -34,6 +32,7 @@ const Nav = ({ homeRef, aboutRef, experienceRef, servicesRef, contactRef }) => {
 }
 
 Nav.propTypes = {
+  activeSection: PropTypes.string.isRequired,
   homeRef: PropTypes.object.isRequired,
   aboutRef: PropTypes.object.isRequired,
   experienceRef: PropTypes.object.isRequired,
